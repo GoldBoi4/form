@@ -59,6 +59,13 @@
       color: #000;
       margin: 10px 0;
     }
+
+    .thank-you {
+      font-size: 18px;
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -70,9 +77,9 @@
     <input type="tel" id="phone" placeholder="Phone Number" required />
     <input type="email" id="email" placeholder="Email Address" required />
     <button onclick="submitForm()">Submit</button>
-    <button onclick="showQR()">Show Payment QR</button>
 
     <div id="qr-section">
+      <div class="thank-you">Thank you! Please proceed with the payment.</div>
       <div class="note">Workshop Price: ₹1400</div>
       <img src="https://raw.githubusercontent.com/GoldBoi4/idk/main/WhatsApp%20Image%202025-05-16%20at%2022.22.56_b13e3b87.jpg" alt="QR Code for Payment" />
     </div>
@@ -96,12 +103,12 @@
         },
         body: new URLSearchParams(data)
       })
-      .then(() => alert("Form submitted successfully!"))
+      .then(() => {
+        document.getElementById("qr-section").style.display = "block";
+        // Optional: Scroll to QR code
+        document.getElementById("qr-section").scrollIntoView({ behavior: 'smooth' });
+      })
       .catch(error => alert("Error: " + error));
-    }
-
-    function showQR() {
-      document.getElementById("qr-section").style.display = "block";
     }
   </script>
 </body>
