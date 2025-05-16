@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: url('your-background.jpg') no-repeat center center fixed;
+      background: url('https://your-image-link.com/background.jpg') no-repeat center center fixed;
       background-size: cover;
     }
     .form-container {
@@ -39,11 +39,20 @@
     button:hover {
       background-color: #218838;
     }
-    .note {
+    #qr-section {
+      display: none;
       text-align: center;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #555;
+      margin-top: 20px;
+    }
+    #qr-section img {
+      max-width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .note {
+      font-size: 16px;
+      color: #000;
+      margin: 10px 0;
     }
   </style>
 </head>
@@ -56,7 +65,12 @@
     <input type="tel" id="phone" placeholder="Phone Number" required />
     <input type="email" id="email" placeholder="Email Address" required />
     <button onclick="submitForm()">Submit</button>
-    <div class="note">Workshop Price: ₹1400</div>
+    <button onclick="showQR()">Show Payment QR</button>
+
+    <div id="qr-section">
+      <div class="note">Workshop Price: ₹1400</div>
+      <img src="https://raw.githubusercontent.com/GoldBoi4/idk/main/WhatsApp%20Image%202025-05-16%20at%2022.22.56_b13e3b87.jpg" alt="QR Code for Payment" />
+    </div>
   </div>
 
   <script>
@@ -79,6 +93,10 @@
       })
       .then(() => alert("Form submitted successfully!"))
       .catch(error => alert("Error: " + error));
+    }
+
+    function showQR() {
+      document.getElementById("qr-section").style.display = "block";
     }
   </script>
 </body>
