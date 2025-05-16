@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Workshop Chandigarh</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('your-background.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      max-width: 400px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 100px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #28a745;
+      border: none;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .note {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Join Our Workshop</h2>
+    <input type="text" id="name" placeholder="Name" required />
+    <input type="number" id="age" placeholder="Age" required />
+    <input type="text" id="city" placeholder="City" required />
+    <input type="tel" id="phone" placeholder="Phone Number" required />
+    <input type="email" id="email" placeholder="Email Address" required />
+    <button onclick="submitForm()">Submit</button>
+    <div class="note">Workshop Price: ₹1400</div>
+  </div>
+
+  <script>
+    function submitForm() {
+      const data = {
+        "Name": document.getElementById("name").value,
+        "Age": document.getElementById("age").value,
+        "City": document.getElementById("city").value,
+        "Phone Number": document.getElementById("phone").value,
+        "Email Address": document.getElementById("email").value
+      };
+
+      fetch("https://script.google.com/macros/s/AKfycbycW1Z97bKHN3yOdAJ4KhRapVsgzo3K_FKmraEDX1xOo0ft-XdxBYOorQrb9kBfqyc4/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(data)
+      })
+      .then(() => alert("Form submitted successfully!"))
+      .catch(error => alert("Error: " + error));
+    }
+  </script>
+</body>
+</html>
