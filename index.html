@@ -2,114 +2,188 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Workshop Chandigarh</title>
+  <title>Join Our Workshop</title>
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background: url('https://raw.githubusercontent.com/GoldBoi4/idk/main/HELLO%20INDIA%20%20After%20your%20persistent%20requests%2C%20I%27m%20thrilled%20to%20announce%20my%20India%20tour!It%27s%20never%20too%20late.%20I%20am%20back%2C%20and%20I%20am%20ready...%20but%20are%20youCHENNAI-%2019th%20April%20-%20%40tattva_thestudioDELHI-%2020th%20April%20-%20%40ifbcstudiosPUNE-%203rd.jpg') no-repeat center center fixed;
-      background-size: cover;
       margin: 0;
       padding: 0;
+      background: url('https://raw.githubusercontent.com/GoldBoi4/idk/main/HELLO%20INDIA%20%20After%20your%20persistent%20requests%2C%20I%27m%20thrilled%20to%20announce%20my%20India%20tour!It%27s%20never%20too%20late.%20I%20am%20back%2C%20and%20I%20am%20ready...%20but%20are%20youCHENNAI-%2019th%20April%20-%20%40tattva_thestudioDELHI-%2020th%20April%20-%20%40ifbcstudiosPUNE-%203rd.jpg') no-repeat center top fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
-    .form-container {
-      background-color: rgba(255, 255, 255, 0.95);
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 0px 15px rgba(0,0,0,0.3);
-    }
-
-    input, button {
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 35px;
+      border-radius: 20px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+      max-width: 450px;
       width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2 {
+      margin-bottom: 30px;
+      color: #222;
+      font-size: 30px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px 16px;
+      margin: 12px 0;
+      border: 2px solid #ccc;
+      border-radius: 12px;
       font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #4CAF50;
+      outline: none;
     }
 
     button {
-      background-color: #28a745;
-      color: white;
+      width: 100%;
+      padding: 14px;
+      margin-top: 20px;
       border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      background: #4CAF50;
+      color: white;
       cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     button:hover {
-      background-color: #218838;
-    }
-
-    #qr-section {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    #qr-section img {
-      max-width: 200px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
-
-    .note {
-      font-size: 16px;
-      color: #000;
-      margin: 10px 0;
+      background: #388e3c;
+      transform: scale(1.03);
     }
 
     .thank-you {
-      font-size: 18px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #popupMessage {
+      font-size: 20px;
       font-weight: bold;
-      color: #28a745;
-      margin-bottom: 10px;
+      color: #2e7d32;
+      margin-top: 20px;
+    }
+
+    #paymentPortal {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 1s ease;
+      margin-top: 20px;
+    }
+
+    #paymentPortal img {
+      width: 220px;
+      margin: 20px 0 10px;
+      border-radius: 14px;
+    }
+
+    .price {
+      font-size: 18px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    ::placeholder {
+      color: #999;
+    }
+
+    .footer-note {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <div class="form-container">
+  <div class="container" id="form-container">
     <h2>Join Our Workshop</h2>
-    <input type="text" id="name" placeholder="Name" required />
-    <input type="number" id="age" placeholder="Age" required />
-    <input type="text" id="city" placeholder="City" required />
-    <input type="tel" id="phone" placeholder="Phone Number" required />
-    <input type="email" id="email" placeholder="Email Address" required />
-    <button onclick="submitForm()">Submit</button>
+    <form id="registerForm">
+      <input type="text" name="Name" placeholder="Name" required />
+      <input type="number" name="Age" placeholder="Age" required />
+      <input type="text" name="City" placeholder="City" required />
+      <input type="text" name="Phone Number" placeholder="Phone Number" required />
+      <input type="email" name="Email Address" placeholder="Email Address" required />
+      <button type="submit">Submit</button>
+    </form>
 
-    <div id="qr-section">
-      <div class="thank-you">Thank you! Please proceed with the payment.</div>
-      <div class="note">Workshop Price: ₹1400</div>
-      <img src="https://raw.githubusercontent.com/GoldBoi4/idk/main/WhatsApp%20Image%202025-05-16%20at%2022.22.56_b13e3b87.jpg" alt="QR Code for Payment" />
+    <div class="thank-you" id="thankYouSection">
+      <div id="popupMessage">✅ Thank you for joining Us!</div>
+      <div id="paymentPortal">
+        <h3>Pay ₹1400 here</h3>
+        <img src="https://raw.githubusercontent.com/GoldBoi4/idk/main/WhatsApp%20Image%202025-05-16%20at%2022.22.56_b13e3b87.jpg" alt="QR Code" />
+        <div class="price">₹1400</div>
+      </div>
+    </div>
+
+    <div class="footer-note">
+      Secure your spot now – limited entries only!
     </div>
   </div>
 
   <script>
-    function submitForm() {
-      const data = {
-        "Name": document.getElementById("name").value,
-        "Age": document.getElementById("age").value,
-        "City": document.getElementById("city").value,
-        "Phone Number": document.getElementById("phone").value,
-        "Email Address": document.getElementById("email").value
-      };
+    document.getElementById("registerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-      fetch("https://script.google.com/macros/s/AKfycbycW1Z97bKHN3yOdAJ4KhRapVsgzo3K_FKmraEDX1xOo0ft-XdxBYOorQrb9kBfqyc4/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams(data)
+      const form = e.target;
+      const data = new FormData(form);
+
+      fetch('https://script.google.com/macros/s/AKfycbxPzZbVoR50QK5xjUg-dGm6peXLzGsM_cv6Ra2rmvJm3n9D0zC8aTpYFVuBapybFq8M/exec', {
+        method: 'POST',
+        body: data
       })
-      .then(() => {
-        document.getElementById("qr-section").style.display = "block";
-        // Optional: Scroll to QR code
-        document.getElementById("qr-section").scrollIntoView({ behavior: 'smooth' });
+      .then(res => res.text())
+      .then(response => {
+        if (response.trim() === "Success") {
+          form.style.display = "none";
+          const thankYouSection = document.getElementById("thankYouSection");
+          const popup = document.getElementById("popupMessage");
+          const payment = document.getElementById("paymentPortal");
+
+          thankYouSection.style.display = "flex";
+
+          setTimeout(() => {
+            popup.style.display = "none";
+            payment.style.display = "flex";
+            setTimeout(() => {
+              payment.style.opacity = "1";
+            }, 100);
+          }, 2500);
+        } else {
+          alert("Submission failed: " + response);
+        }
       })
-      .catch(error => alert("Error: " + error));
-    }
+      .catch(error => {
+        alert("Error: " + error);
+      });
+    });
   </script>
 </body>
 </html>
